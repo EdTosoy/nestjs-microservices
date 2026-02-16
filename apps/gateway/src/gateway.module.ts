@@ -42,6 +42,15 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 
           }
         },
+        {
+          name: 'AUTH_CLIENT',
+          transport: Transport.RMQ,
+          options: {
+            urls: [process.env.RABBITMQ_URL ?? "amqp://localhost:5672"],
+            queue: process.env.AUTH_QUEUE ?? "auth_queue",
+            queueOptions: { durable: false }
+          }
+        },
       ]
     )
   ],

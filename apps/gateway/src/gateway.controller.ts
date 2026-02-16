@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs'
 @Controller()
 export class GatewayController {
   constructor(
+    @Inject('AUTH_CLIENT') private readonly authClient: ClientProxy,
     @Inject('CATALOG_CLIENT') private readonly catalogClient: ClientProxy,
     @Inject('SEARCH_CLIENT') private readonly searchClient: ClientProxy,
     @Inject('MEDIA_CLIENT') private readonly mediaClient: ClientProxy,
@@ -31,7 +32,8 @@ export class GatewayController {
 
       }
     }
-    const [catalog, search, media] = await Promise.all([
+    const [auth, catalog, search, media] = await Promise.all([
+      ping('auth', this.authClient),
       ping('catalog', this.catalogClient),
       ping('search', this.searchClient),
       ping('media', this.mediaClient),
@@ -47,6 +49,7 @@ export class GatewayController {
 
       },
       services: {
+        auth,
         catalog,
         search,
         media
