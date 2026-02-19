@@ -9,5 +9,7 @@
  * 🟢 You can import this file directly.
  */
 export type * from './models/User.ts'
+export type * from './models/Role.ts'
 export type * from './models/RefreshToken.ts'
+export type * from './models/Permission.ts'
 export type * from './commonInputTypes.ts'
