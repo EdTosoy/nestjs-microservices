@@ -14,7 +14,13 @@ export class AuthService {
     private readonly prisma: PrismaService,
   ) { }
 
-
+  ping() {
+    return {
+      ok: true,
+      service: 'auth',
+      now: new Date().toISOString()
+    }
+  }
 
   async register(email: string, password: string) {
     const existing = await this.prisma.user.findUnique({ where: { email } });
