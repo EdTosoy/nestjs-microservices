@@ -7,11 +7,9 @@ import { APP_GUARD, Reflector } from '@nestjs/core';
 import { JwtAuthGuard } from 'libs/common/guards/jwt-auth.guard';
 import { PermissionGuard } from 'libs/common/guards/permission.guard';
 import { RolesGuard } from 'libs/common/guards/roles.guard';
-import { AuthModule } from 'apps/auth/src/auth.module';
 
 @Module({
   imports: [
-    AuthModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
