@@ -1,22 +1,18 @@
-import { Logger } from "@nestjs/common";
-import { NestFactory } from "@nestjs/core";
-import { MicroserviceOptions, Transport } from '@nestjs/microservices'
-import { AuthModule } from "./auth.module";
-
-
+import { Logger } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
+import { AuthModule } from './auth.module';
 
 async function bootstrap() {
-  process.title = "auth";
+  process.title = 'auth';
 
-  const logger = new Logger('AuthBoostrap')
+  const logger = new Logger('AuthBoostrap');
 
-  const rmqUrl = process.env.RABBITMQ_URL ?? "amqp://localhost:5672"
+  const rmqUrl = process.env.RABBITMQ_URL ?? 'amqp://localhost:5672';
 
-  const queue = process.env.AUTH_QUEUE ?? "auth_queue"
+  const queue = process.env.AUTH_QUEUE ?? 'auth_queue';
 
-
-
-  //create an microservices 
+  //create an microservices
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     AuthModule,
     {
@@ -25,16 +21,15 @@ async function bootstrap() {
         urls: [rmqUrl],
         queue,
         queueOptions: {
-          durable: false
-        }
-      }
-    }
-  )
+          durable: false,
+        },
+      },
+    },
+  );
 
-  app.enableShutdownHooks()
-  await app.listen()
+  app.enableShutdownHooks();
+  await app.listen();
 
-  logger.log(`Auth RMQ listening on queue ${queue} via ${rmqUrl} `)
-
+  logger.log(`Auth RMQ listening on queue ${queue} via ${rmqUrl} `);
 }
-bootstrap()
+bootstrap();
