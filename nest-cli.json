@@ -27,6 +27,15 @@
         "tsConfigPath": "apps/catalog/tsconfig.app.json"
       }
     },
+    "common": {
+      "type": "library",
+      "root": "libs/common",
+      "entryFile": "index",
+      "sourceRoot": "libs/common/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/common/tsconfig.lib.json"
+      }
+    },
     "gateway": {
       "type": "application",
       "root": "apps/gateway",
@@ -52,6 +61,15 @@
       "sourceRoot": "apps/nestjs-microservices/src",
       "compilerOptions": {
         "tsConfigPath": "apps/nestjs-microservices/tsconfig.app.json"
+      }
+    },
+    "prisma": {
+      "type": "library",
+      "root": "libs/prisma",
+      "entryFile": "index",
+      "sourceRoot": "libs/prisma/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/prisma/tsconfig.lib.json"
       }
     },
     "search": {

@@ -37,3 +37,8 @@ export type RefreshToken = Prisma.RefreshTokenModel
  * 
  */
 export type Permission = Prisma.PermissionModel
+/**
+ * Model Product
+ * 
+ */
+export type Product = Prisma.ProductModel

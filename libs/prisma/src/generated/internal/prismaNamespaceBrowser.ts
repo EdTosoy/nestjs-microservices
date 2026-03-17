@@ -54,7 +54,8 @@ export const ModelName = {
   User: 'User',
   Role: 'Role',
   RefreshToken: 'RefreshToken',
-  Permission: 'Permission'
+  Permission: 'Permission',
+  Product: 'Product'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -112,6 +113,19 @@ export const PermissionScalarFieldEnum = {
 export type PermissionScalarFieldEnum = (typeof PermissionScalarFieldEnum)[keyof typeof PermissionScalarFieldEnum]
 
 
+export const ProductScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  description: 'description',
+  price: 'price',
+  status: 'status',
+  image: 'image',
+  createdByUserId: 'createdByUserId'
+} as const
+
+export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -126,4 +140,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

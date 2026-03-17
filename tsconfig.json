@@ -22,11 +22,17 @@
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@app/rpc": [
-        "libs/rpc/src"
+      "@app/common": [
+        "libs/common/src"
       ],
-      "@app/rpc/*": [
-        "libs/rpc/src/*"
+      "@app/common/*": [
+        "libs/common/src/*"
+      ],
+      "@app/prisma": [
+        "libs/prisma/src"
+      ],
+      "@app/prisma/*": [
+        "libs/prisma/src/*"
       ]
     }
   }

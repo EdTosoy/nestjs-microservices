@@ -1,25 +1,25 @@
 import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { JwtPayload } from 'libs/common/interfaces/jwt-payload.interface';
-import { RoleEnum } from 'libs/common/interfaces/user.interface';
-import { PrismaService } from 'libs/prisma';
+import { JwtPayload } from '@app/common/interfaces/jwt-payload.interface';
+import { RoleEnum } from '@app/common/interfaces/user.interface';
+import { PrismaService } from '@app/prisma/prisma.service';
 
 @Injectable()
 export class AuthService {
-  private readonly logger = new Logger(AuthService.name)
+  private readonly logger = new Logger(AuthService.name);
 
   constructor(
     private readonly jwt: JwtService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   ping() {
     return {
       ok: true,
       service: 'auth',
-      now: new Date().toISOString()
-    }
+      now: new Date().toISOString(),
+    };
   }
 
   async register(email: string, password: string) {
@@ -43,60 +43,53 @@ export class AuthService {
     return {
       id: user.id,
       email: user.email,
-      roles: user.roles.map(r => r.name),
+      roles: user.roles.map((r) => r.name),
     };
   }
 
   async login(email: string, password: string) {
-
     const user = await this.prisma.user.findUnique({
       where: { email },
       include: {
-        roles: { include: { permissions: true } }
-      }
-
-    })
+        roles: { include: { permissions: true } },
+      },
+    });
 
     if (!user) {
-      throw new UnauthorizedException('User not found')
+      throw new UnauthorizedException('User not found');
     }
 
-    const isValid = await bcrypt.compare(password, user.password)
+    const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
-      throw new UnauthorizedException("Invalid password")
-
+      throw new UnauthorizedException('Invalid password');
     }
 
     const payload: JwtPayload = {
       sub: user.id,
       email: user.email,
-      roles: user.roles.map(r => r.name),
-      permissions: user.roles.flatMap(r => r.permissions.map(p => p.name))
-    }
+      roles: user.roles.map((r) => r.name),
+      permissions: user.roles.flatMap((r) => r.permissions.map((p) => p.name)),
+    };
 
     let accessToken: string;
     try {
-      accessToken = this.jwt.sign(payload, { expiresIn: "15m" })
+      accessToken = this.jwt.sign(payload, { expiresIn: '15m' });
     } catch (err) {
-      this.logger.error("failed to sign access tokne", err)
-      throw new UnauthorizedException()
+      this.logger.error('failed to sign access tokne', err);
+      throw new UnauthorizedException();
     }
 
-    const refreshToken = await this.createRefreshToken(user.id)
+    const refreshToken = await this.createRefreshToken(user.id);
 
     return {
       accessToken,
-      refreshToken
-    }
-
+      refreshToken,
+    };
   }
 
   async createRefreshToken(userId: string) {
-    const token = this.jwt.sign(
-      { sub: userId },
-      { expiresIn: '7d' }
-    );
+    const token = this.jwt.sign({ sub: userId }, { expiresIn: '7d' });
     const tokenHash = await bcrypt.hash(token, 10);
 
     await this.prisma.refreshToken.create({
@@ -145,4 +138,3 @@ export class AuthService {
     throw new UnauthorizedException('Refresh token not found');
   }
 }
-

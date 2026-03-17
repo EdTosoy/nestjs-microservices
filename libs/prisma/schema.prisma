@@ -48,3 +48,18 @@ model Permission {
   name  String @unique
   roles Role[]
 }
+
+enum ProductStatus {
+  Draft
+  Active
+}
+
+model Product {
+  id              String        @id @default(uuid())
+  name            String
+  description     String
+  price           Int
+  status          ProductStatus @default(Draft)
+  image           String?
+  createdByUserId String
+}

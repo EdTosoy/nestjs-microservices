@@ -1,10 +1,8 @@
-
 export enum RoleEnum {
   USER = 'user',
   ADMIN = 'admin',
   MODERATOR = 'moderator',
 }
-
 
 export enum PermissionEnum {
   CREATE_POST = 'create_post',
@@ -16,9 +14,9 @@ export enum PermissionEnum {
 export interface User {
   sub: string;
   email: string;
-  roles: RoleEnum[],
-  permissions?: PermissionEnum[]
+  roles: RoleEnum[];
+  permissions?: PermissionEnum[];
 }
 export interface AuthRequest extends Request {
-  user: User
+  user: User;
 }
