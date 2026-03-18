@@ -50,8 +50,8 @@ model Permission {
 }
 
 enum ProductStatus {
-  Draft
-  Active
+  DRAFT
+  ACTIVE
 }
 
 model Product {
@@ -59,7 +59,8 @@ model Product {
   name            String
   description     String
   price           Int
-  status          ProductStatus @default(Draft)
-  image           String?
+  status          ProductStatus @default(DRAFT)
+  imageUrl        String?
   createdByUserId String
+  createdAt       DateTime      @default(now())
 }

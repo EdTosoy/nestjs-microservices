@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
-import { GatewayController } from './gateway.controller';
 import { GatewayService } from './gateway.service';
 import { ConfigModule } from '@nestjs/config';
-import { ClientsModule, Transport } from '@nestjs/microservices';
 import { APP_GUARD, Reflector } from '@nestjs/core';
 import { JwtAuthGuard } from '@app/common/guards/jwt-auth.guard';
 import { PermissionGuard } from '@app/common/guards/permission.guard';
 import { RolesGuard } from '@app/common/guards/roles.guard';
+import { HealthModule } from '../modules/health/health.module';
+import { ProductGatewayModule } from '../modules/products/products.module';
+import { AuthGatewayModule } from '../modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -14,46 +15,10 @@ import { RolesGuard } from '@app/common/guards/roles.guard';
       isGlobal: true,
       envFilePath: '.env',
     }),
-    ClientsModule.register([
-      {
-        name: 'CATALOG_CLIENT',
-        transport: Transport.RMQ,
-        options: {
-          urls: [process.env.RABBITMQ_URL ?? 'amqp://localhost:5672'],
-          queue: process.env.CATALOG_QUEUE ?? 'catalog_queue',
-          queueOptions: { durable: false },
-        },
-      },
-      {
-        name: 'MEDIA_CLIENT',
-        transport: Transport.RMQ,
-        options: {
-          urls: [process.env.RABBITMQ_URL ?? 'amqp://localhost:5672'],
-          queue: process.env.MEDIA_QUEUE ?? 'media_queue',
-          queueOptions: { durable: false },
-        },
-      },
-      {
-        name: 'SEARCH_CLIENT',
-        transport: Transport.RMQ,
-        options: {
-          urls: [process.env.RABBITMQ_URL ?? 'amqp://localhost:5672'],
-          queue: process.env.SEARCH_QUEUE ?? 'search_queue',
-          queueOptions: { durable: false },
-        },
-      },
-      {
-        name: 'AUTH_CLIENT',
-        transport: Transport.RMQ,
-        options: {
-          urls: [process.env.RABBITMQ_URL ?? 'amqp://localhost:5672'],
-          queue: process.env.AUTH_QUEUE ?? 'auth_queue',
-          queueOptions: { durable: false },
-        },
-      },
-    ]),
+    AuthGatewayModule,
+    HealthModule,
+    ProductGatewayModule,
   ],
-  controllers: [GatewayController],
   providers: [
     GatewayService,
     {

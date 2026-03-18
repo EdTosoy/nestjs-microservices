@@ -1,0 +1,14 @@
+opencollection: 1.0.0
+info:
+  name: "api"
+  type: workspace
+
+collections:
+  - name: "products"
+    path: "collections/products"
+  - name: "auth"
+    path: "collections/auth"
+
+specs:
+
+docs: ''

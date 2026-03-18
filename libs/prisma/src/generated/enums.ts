@@ -10,8 +10,8 @@
 */
 
 export const ProductStatus = {
-  Draft: 'Draft',
-  Active: 'Active'
+  DRAFT: 'DRAFT',
+  ACTIVE: 'ACTIVE'
 } as const
 
 export type ProductStatus = (typeof ProductStatus)[keyof typeof ProductStatus]
