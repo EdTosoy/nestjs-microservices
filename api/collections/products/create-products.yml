@@ -1,0 +1,27 @@
+info:
+  name: create-products
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: http://localhost:3000/products
+  headers:
+    - name: Authorization
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NmFlMjFmMy00YzIyLTQwOTktYjFjOC1kZDA5YmZlZGMyOGQiLCJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwicm9sZXMiOlsiYWRtaW4iXSwicGVybWlzc2lvbnMiOltdLCJpYXQiOjE3NzM4NzgzNDYsImV4cCI6MTc3Mzg3OTI0Nn0.knKeH40rxfhwZXHRNJzUHw7JXvG0-9U-Pwe7E-wdAoI
+  body:
+    type: json
+    data: |-
+      {
+        "name" : "Product name",
+        "description": "description ",
+        "price": 7444,
+        "status": "DRAFT",
+        "imageUrl": ""
+      } 
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

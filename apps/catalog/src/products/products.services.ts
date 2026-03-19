@@ -38,7 +38,7 @@ export class ProductService {
   }
 
   async getProductById(id: string) {
-    if (!isUUID) {
+    if (!isUUID(id)) {
       rpcBadRequest('Invalid product ID');
     }
     const product = await this.prisma.product.findUnique({

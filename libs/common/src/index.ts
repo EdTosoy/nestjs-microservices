@@ -13,3 +13,5 @@ export * from './interfaces/user.interface';
 export * from './dto/login.dto';
 export * from './dto/register.dto';
 export * from './dto/createProduct.dto';
+
+export * from './strategies/jwt.strategies';

@@ -8,6 +8,8 @@ import { RolesGuard } from '@app/common/guards/roles.guard';
 import { HealthModule } from '../modules/health/health.module';
 import { ProductGatewayModule } from '../modules/products/products.module';
 import { AuthGatewayModule } from '../modules/auth/auth.module';
+import { PassportModule } from '@nestjs/passport';
+import { JwtStrategy } from '../../../libs/common/src/strategies/jwt.strategies';
 
 @Module({
   imports: [
@@ -15,12 +17,14 @@ import { AuthGatewayModule } from '../modules/auth/auth.module';
       isGlobal: true,
       envFilePath: '.env',
     }),
+    PassportModule,
     AuthGatewayModule,
     HealthModule,
     ProductGatewayModule,
   ],
   providers: [
     GatewayService,
+    JwtStrategy,
     {
       provide: APP_GUARD,
       useFactory: (reflector: Reflector) => new JwtAuthGuard(reflector),

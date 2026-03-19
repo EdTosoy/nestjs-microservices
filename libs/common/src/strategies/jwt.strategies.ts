@@ -12,7 +12,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
       secretOrKey: config.get<string>('JWT_SECRET')!,
       ignoreExpiration: false,
     };
-
     super(options);
   }
 

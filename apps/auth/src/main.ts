@@ -6,7 +6,7 @@ import { AuthModule } from './auth.module';
 async function bootstrap() {
   process.title = 'auth';
 
-  const logger = new Logger('AuthBoostrap');
+  const logger = new Logger('AuthBootstrap');
 
   const rmqUrl = process.env.RABBITMQ_URL ?? 'amqp://localhost:5672';
 

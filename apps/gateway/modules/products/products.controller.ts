@@ -1,5 +1,12 @@
-import { CreateProductDto, CurrentUser, type User } from '@app/common';
-import { Body, Controller, Inject, Post } from '@nestjs/common';
+import {
+  CreateProductDto,
+  CurrentUser,
+  Public,
+  RoleEnum,
+  Roles,
+  type User,
+} from '@app/common';
+import { Body, Controller, Get, Inject, Param, Post } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { firstValueFrom } from 'rxjs';
 
@@ -10,6 +17,7 @@ export class ProductHttpController {
   ) {}
 
   @Post('products')
+  @Roles(RoleEnum.ADMIN)
   async createProduct(
     @CurrentUser() user: User,
     @Body() body: CreateProductDto,
@@ -20,5 +28,17 @@ export class ProductHttpController {
         createdByUserId: user.sub,
       }),
     );
+  }
+
+  @Get('products')
+  @Public()
+  async listProducts() {
+    return firstValueFrom(this.catalogClient.send('product.list', {}));
+  }
+
+  @Get('product/:id')
+  @Public()
+  async getProductById(@Param('id') id: string) {
+    return firstValueFrom(this.catalogClient.send('product.getById', id));
   }
 }
