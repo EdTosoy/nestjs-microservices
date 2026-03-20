@@ -10,9 +10,11 @@ export * from './guards/roles.guard';
 export * from './interfaces/jwt-payload.interface';
 export * from './interfaces/user.interface';
 export * from './interfaces/media.interface';
+export * from './interfaces/product.interface';
 
 export * from './dto/login.dto';
 export * from './dto/register.dto';
 export * from './dto/createProduct.dto';
+export * from './dto/search.dto';
 
 export * from './strategies/jwt.strategies';

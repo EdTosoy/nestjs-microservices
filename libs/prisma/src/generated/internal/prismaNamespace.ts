@@ -389,7 +389,8 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Permission: 'Permission',
   Product: 'Product',
-  Media: 'Media'
+  Media: 'Media',
+  Search: 'Search'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -405,7 +406,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "role" | "refreshToken" | "permission" | "product" | "media"
+    modelProps: "user" | "role" | "refreshToken" | "permission" | "product" | "media" | "search"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -853,6 +854,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Search: {
+      payload: Prisma.$SearchPayload<ExtArgs>
+      fields: Prisma.SearchFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.SearchFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.SearchFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>
+        }
+        findFirst: {
+          args: Prisma.SearchFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.SearchFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>
+        }
+        findMany: {
+          args: Prisma.SearchFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>[]
+        }
+        create: {
+          args: Prisma.SearchCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>
+        }
+        createMany: {
+          args: Prisma.SearchCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.SearchCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>[]
+        }
+        delete: {
+          args: Prisma.SearchDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>
+        }
+        update: {
+          args: Prisma.SearchUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>
+        }
+        deleteMany: {
+          args: Prisma.SearchDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.SearchUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.SearchUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>[]
+        }
+        upsert: {
+          args: Prisma.SearchUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$SearchPayload>
+        }
+        aggregate: {
+          args: Prisma.SearchAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateSearch>
+        }
+        groupBy: {
+          args: Prisma.SearchGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SearchGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.SearchCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.SearchCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -939,7 +1014,8 @@ export const ProductScalarFieldEnum = {
   status: 'status',
   imageUrl: 'imageUrl',
   createdByUserId: 'createdByUserId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -954,6 +1030,21 @@ export const MediaScalarFieldEnum = {
 } as const
 
 export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
+
+
+export const SearchScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  name: 'name',
+  description: 'description',
+  normalizedText: 'normalizedText',
+  status: 'status',
+  price: 'price',
+  imageUrl: 'imageUrl',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SearchScalarFieldEnum = (typeof SearchScalarFieldEnum)[keyof typeof SearchScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -1163,6 +1254,7 @@ export type GlobalOmitConfig = {
   permission?: Prisma.PermissionOmit
   product?: Prisma.ProductOmit
   media?: Prisma.MediaOmit
+  search?: Prisma.SearchOmit
 }
 
 /* Types for Logging */

@@ -4,12 +4,16 @@ import { rpcBadRequest } from 'libs/rpc/errors';
 import { ProductStatus } from '@app/prisma/generated/enums';
 import { isUUID } from 'class-validator';
 import { CreateProductDto } from '@app/common/dto/createProduct.dto';
+import { ProductEventsPublisher } from '../events/product-events.publisher';
 
 @Injectable()
 export class ProductService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly events: ProductEventsPublisher,
+  ) {}
 
-  async createProduct(input: CreateProductDto) {
+  async createProduct(input: CreateProductDto & { createdByUserId: string }) {
     const { description, name, price, status } = input;
     if (!name || !description) {
       rpcBadRequest('name and description are required');
@@ -26,6 +30,8 @@ export class ProductService {
     const newlyCreatedProduct = await this.prisma.product.create({
       data: { ...input },
     });
+
+    await this.events.productCreated(newlyCreatedProduct);
     return newlyCreatedProduct;
   }
 

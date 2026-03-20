@@ -69,3 +69,8 @@ export type Product = Prisma.ProductModel
  * 
  */
 export type Media = Prisma.MediaModel
+/**
+ * Model Search
+ * 
+ */
+export type Search = Prisma.SearchModel

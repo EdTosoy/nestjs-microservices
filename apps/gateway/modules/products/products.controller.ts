@@ -1,13 +1,13 @@
 import {
   CreateProductDto,
   CurrentUser,
+  ProductCreatedEvent,
   Public,
   RoleEnum,
   Roles,
   UploadMediaResponse,
   type User,
 } from '@app/common';
-import { Product } from '@app/prisma/generated/client';
 import {
   Body,
   Controller,
@@ -61,7 +61,7 @@ export class ProductHttpController {
       mediaId = uploadResult.mediaId;
     }
 
-    const product = await firstValueFrom<Product>(
+    const product = await firstValueFrom<ProductCreatedEvent>(
       this.catalogClient.send('product.create', {
         ...body,
         imageUrl,

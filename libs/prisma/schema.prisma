@@ -1,13 +1,6 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
-  provider = "prisma-client"
-  output   = "./src/generated"
-
+  provider               = "prisma-client"
+  output                 = "./src/generated"
   generatedFileExtension = "ts"
   importFileExtension    = "ts"
 }
@@ -21,7 +14,7 @@ model User {
   email         String         @unique
   password      String
   createdAt     DateTime       @default(now())
-  lastSeenAt    DateTime
+  lastSeenAt    DateTime       @default(now())
   refreshTokens RefreshToken[]
   roles         Role[]
 }
@@ -63,12 +56,27 @@ model Product {
   imageUrl        String?
   createdByUserId String
   createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+  media           Media[]
 }
 
 model Media {
-  id             String  @id @default(uuid())
-  publicId       String  @unique
+  id             String   @id @default(uuid())
+  publicId       String   @unique
   url            String
   uploadByUserId String?
   productId      String?
+  product        Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+}
+
+model Search {
+  id             String        @id @default(uuid())
+  productId      String        @unique
+  name           String
+  description    String
+  normalizedText String
+  status         ProductStatus
+  price          Int
+  imageUrl       String?
+  updatedAt      DateTime      @updatedAt
 }

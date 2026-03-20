@@ -56,7 +56,8 @@ export const ModelName = {
   RefreshToken: 'RefreshToken',
   Permission: 'Permission',
   Product: 'Product',
-  Media: 'Media'
+  Media: 'Media',
+  Search: 'Search'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -122,7 +123,8 @@ export const ProductScalarFieldEnum = {
   status: 'status',
   imageUrl: 'imageUrl',
   createdByUserId: 'createdByUserId',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -137,6 +139,21 @@ export const MediaScalarFieldEnum = {
 } as const
 
 export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
+
+
+export const SearchScalarFieldEnum = {
+  id: 'id',
+  productId: 'productId',
+  name: 'name',
+  description: 'description',
+  normalizedText: 'normalizedText',
+  status: 'status',
+  price: 'price',
+  imageUrl: 'imageUrl',
+  updatedAt: 'updatedAt'
+} as const
+
+export type SearchScalarFieldEnum = (typeof SearchScalarFieldEnum)[keyof typeof SearchScalarFieldEnum]
 
 
 export const SortOrder = {

@@ -236,7 +236,7 @@ export type UserCreateInput = {
   email: string
   password: string
   createdAt?: Date | string
-  lastSeenAt: Date | string
+  lastSeenAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
   roles?: Prisma.RoleCreateNestedManyWithoutUsersInput
 }
@@ -246,7 +246,7 @@ export type UserUncheckedCreateInput = {
   email: string
   password: string
   createdAt?: Date | string
-  lastSeenAt: Date | string
+  lastSeenAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
 }
@@ -276,7 +276,7 @@ export type UserCreateManyInput = {
   email: string
   password: string
   createdAt?: Date | string
-  lastSeenAt: Date | string
+  lastSeenAt?: Date | string
 }
 
 export type UserUpdateManyMutationInput = {
@@ -399,7 +399,7 @@ export type UserCreateWithoutRolesInput = {
   email: string
   password: string
   createdAt?: Date | string
-  lastSeenAt: Date | string
+  lastSeenAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenCreateNestedManyWithoutUserInput
 }
 
@@ -408,7 +408,7 @@ export type UserUncheckedCreateWithoutRolesInput = {
   email: string
   password: string
   createdAt?: Date | string
-  lastSeenAt: Date | string
+  lastSeenAt?: Date | string
   refreshTokens?: Prisma.RefreshTokenUncheckedCreateNestedManyWithoutUserInput
 }
 
@@ -449,7 +449,7 @@ export type UserCreateWithoutRefreshTokensInput = {
   email: string
   password: string
   createdAt?: Date | string
-  lastSeenAt: Date | string
+  lastSeenAt?: Date | string
   roles?: Prisma.RoleCreateNestedManyWithoutUsersInput
 }
 
@@ -458,7 +458,7 @@ export type UserUncheckedCreateWithoutRefreshTokensInput = {
   email: string
   password: string
   createdAt?: Date | string
-  lastSeenAt: Date | string
+  lastSeenAt?: Date | string
   roles?: Prisma.RoleUncheckedCreateNestedManyWithoutUsersInput
 }
 
