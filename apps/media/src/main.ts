@@ -12,7 +12,7 @@ async function bootstrap() {
 
   const queue = process.env.MEDIA_QUEUE ?? 'media_queue';
 
-  //create an microservices instace
+  //create an microservices instance
   const app = await NestFactory.createMicroservice<MicroserviceOptions>(
     MediaModule,
     {

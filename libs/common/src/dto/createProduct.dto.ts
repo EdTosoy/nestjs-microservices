@@ -7,6 +7,7 @@ import {
   Min,
 } from 'class-validator';
 import { ProductStatus } from '@app/prisma/generated/enums';
+import { Transform } from 'class-transformer';
 
 export class CreateProductDto {
   @IsString()
@@ -15,6 +16,7 @@ export class CreateProductDto {
   @IsString()
   description: string;
 
+  @Transform(({ value }) => Number(value))
   @IsNumber()
   @Min(0)
   price: number;
@@ -26,7 +28,4 @@ export class CreateProductDto {
   @IsOptional()
   @IsUrl()
   imageUrl?: string;
-
-  @IsString()
-  createdByUserId: string;
 }

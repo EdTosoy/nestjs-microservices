@@ -8,17 +8,26 @@ http:
   url: http://localhost:3000/products
   headers:
     - name: Authorization
-      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NmFlMjFmMy00YzIyLTQwOTktYjFjOC1kZDA5YmZlZGMyOGQiLCJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwicm9sZXMiOlsiYWRtaW4iXSwicGVybWlzc2lvbnMiOltdLCJpYXQiOjE3NzM4NzgzNDYsImV4cCI6MTc3Mzg3OTI0Nn0.knKeH40rxfhwZXHRNJzUHw7JXvG0-9U-Pwe7E-wdAoI
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NmFlMjFmMy00YzIyLTQwOTktYjFjOC1kZDA5YmZlZGMyOGQiLCJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwicm9sZXMiOlsiYWRtaW4iXSwicGVybWlzc2lvbnMiOltdLCJpYXQiOjE3NzQwMjQwMjUsImV4cCI6MTc3NDAyNDkyNX0.d4Dow0clOK1XEojZn21rhTPvr_ygU1JhAw8R_OqpTBU
   body:
-    type: json
-    data: |-
-      {
-        "name" : "Product name",
-        "description": "description ",
-        "price": 7444,
-        "status": "DRAFT",
-        "imageUrl": ""
-      } 
+    type: multipart-form
+    data:
+      - name: name
+        type: text
+        value: harpoon
+      - name: description
+        type: text
+        value: hahaha
+      - name: price
+        type: text
+        value: "123"
+      - name: status
+        type: text
+        value: DRAFT
+      - name: image
+        type: file
+        value:
+          - /home/johncarlojose/Downloads/nixos-bground-text.png
 
 settings:
   encodeUrl: true

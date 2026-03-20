@@ -64,3 +64,11 @@ model Product {
   createdByUserId String
   createdAt       DateTime      @default(now())
 }
+
+model Media {
+  id             String  @id @default(uuid())
+  publicId       String  @unique
+  url            String
+  uploadByUserId String?
+  productId      String?
+}

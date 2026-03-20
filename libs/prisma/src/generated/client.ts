@@ -64,3 +64,8 @@ export type Permission = Prisma.PermissionModel
  * 
  */
 export type Product = Prisma.ProductModel
+/**
+ * Model Media
+ * 
+ */
+export type Media = Prisma.MediaModel

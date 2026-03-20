@@ -55,7 +55,8 @@ export const ModelName = {
   Role: 'Role',
   RefreshToken: 'RefreshToken',
   Permission: 'Permission',
-  Product: 'Product'
+  Product: 'Product',
+  Media: 'Media'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -125,6 +126,17 @@ export const ProductScalarFieldEnum = {
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const MediaScalarFieldEnum = {
+  id: 'id',
+  publicId: 'publicId',
+  url: 'url',
+  uploadByUserId: 'uploadByUserId',
+  productId: 'productId'
+} as const
+
+export type MediaScalarFieldEnum = (typeof MediaScalarFieldEnum)[keyof typeof MediaScalarFieldEnum]
 
 
 export const SortOrder = {

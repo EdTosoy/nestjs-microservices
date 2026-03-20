@@ -9,8 +9,8 @@ import { CreateProductDto } from '@app/common/dto/createProduct.dto';
 export class ProductService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createProduct(createProductInput: CreateProductDto) {
-    const { description, name, price, status } = createProductInput;
+  async createProduct(input: CreateProductDto) {
+    const { description, name, price, status } = input;
     if (!name || !description) {
       rpcBadRequest('name and description are required');
     }
@@ -24,7 +24,7 @@ export class ProductService {
       rpcBadRequest('Status must be either draft or active');
     }
     const newlyCreatedProduct = await this.prisma.product.create({
-      data: { ...createProductInput },
+      data: { ...input },
     });
     return newlyCreatedProduct;
   }
