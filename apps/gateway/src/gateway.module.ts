@@ -10,6 +10,7 @@ import { ProductGatewayModule } from '../modules/products/products.module';
 import { AuthGatewayModule } from '../modules/auth/auth.module';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from '../../../libs/common/src/strategies/jwt.strategies';
+import { SearchGatewayModule } from '../modules/search/search.module';
 
 @Module({
   imports: [
@@ -18,9 +19,10 @@ import { JwtStrategy } from '../../../libs/common/src/strategies/jwt.strategies'
       envFilePath: '.env',
     }),
     PassportModule,
-    AuthGatewayModule,
     HealthModule,
+    AuthGatewayModule,
     ProductGatewayModule,
+    SearchGatewayModule,
   ],
   providers: [
     GatewayService,

@@ -8,7 +8,7 @@ http:
   url: http://localhost:3000/products
   headers:
     - name: Authorization
-      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI5NmFlMjFmMy00YzIyLTQwOTktYjFjOC1kZDA5YmZlZGMyOGQiLCJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwicm9sZXMiOlsiYWRtaW4iXSwicGVybWlzc2lvbnMiOltdLCJpYXQiOjE3NzQwMzc3NDEsImV4cCI6MTc3NDAzODY0MX0.AS0vKq3Jq5q_6caQwhuxdDE3Xm5CYZrhqp2hhpaMcW8
+      value: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwNWYyMGRmNi0wYTJiLTQzN2QtYjEwYi02MmQ1ZmZlMTJlYzQiLCJlbWFpbCI6ImFkbWluQHRlc3QuY29tIiwicm9sZXMiOlsiYWRtaW4iXSwicGVybWlzc2lvbnMiOltdLCJpYXQiOjE3NzQwNjIwNTMsImV4cCI6MTc3NDA2Mjk1M30.5wUdppYM6MP-o0hGjoiHUMk5_jfErmq7pRS-gcqQirs
   body:
     type: multipart-form
     data:
